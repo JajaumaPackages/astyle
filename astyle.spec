@@ -1,6 +1,6 @@
 Name:           astyle
-Version:        2.05.1
-Release:        4%{?dist}
+Version:        2.06
+Release:        1%{?dist}
 Summary:        Source code formatter for C-like programming languages
 
 %global soversion 2.05
@@ -9,8 +9,6 @@ Group:          Development/Tools
 License:        LGPLv3+
 URL:            http://astyle.sourceforge.net/
 Source0:        http://downloads.sourceforge.net/%{name}/%{name}_%{version}_linux.tar.gz
-# publish API used by Code::Blocks IDE
-Patch0:         %{name}-2.04-indent-api.patch
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -33,7 +31,6 @@ This package contains the shared library.
 
 %prep
 %setup -q -n %{name}
-%patch0 -p1 -b .indent-api
 
 %build
 chmod a-x src/*
@@ -72,6 +69,10 @@ popd
 %{_includedir}/astyle.h
 
 %changelog
+* Sun Jan 15 2017 Jajauma's Packages <jajauma@yandex.ru> - 2.06-1
+- Update to latest upstream release
+- Drop astyle-2.04-indent-api.patch
+
 * Wed Feb 03 2016 Fedora Release Engineering <releng@fedoraproject.org> - 2.05.1-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
 
